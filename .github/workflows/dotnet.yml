@@ -27,9 +27,9 @@ jobs:
     - name: Publish .NET Core Project
       run: dotnet publish FlowerShop/Boutique.csproj -c Release -o release --nologo
     - name: Change base-tag in index.html from / to PAPP2041_SEM2_ASP_LI
-      run: sed -i 's/<base href="\/" \/>/<base href="\/PAPP2041_SEM2_ASP_LI\/" \/>/g' release/wwwroot/index.html
+      run: sed -i 's/<base href="\/" \/>/<base href="\/PAPP2041_SEM2_ASP_LI\/" \/>/g' FlowerShop/release/wwwroot/index.html
     - name: Add .nojekyll file
-      run: touch release/wwwroot/.nojekyll
+      run: touch FlowerShop/release/wwwroot/.nojekyll
     - name: Commit wwwroot to GitHub Pages
       uses: JamesIves/github-pages-deploy-action@3.7.1
       with:
