@@ -1,6 +1,6 @@
-﻿@model Boutique.Models.ViewModels.ProdusViewModel
+@model Boutique.Models.ViewModels.ProdusViewModel
 @{
-    ViewData["Title"] = (Model.Produs.Id != 0 ? "Editare" : "Creare") + " Produs";
+    ViewData["Title"] = (Model.Produs.Id != -1 ? "Editare" : "Creare") + " Produs";
 }
 <form method="post" enctype="multipart/form-data">
     <div class="border p-3">
@@ -63,8 +63,9 @@
                 <div class="form-group row">
                     <div class="col-8 offset-4 row">
                         <div class="col">
-                            @if (Model.Produs.Id != 0)
+                            @if (Model.Produs.Id != -1)
                             {
+                                <input asp-for="Produs.Id" value="@Model.Produs.Id" hidden />
                                 <input type="submit" class="btn btn-outline-success w-100" value="Editează" />
                             }
                             else
