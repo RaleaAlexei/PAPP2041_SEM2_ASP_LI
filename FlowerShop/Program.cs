@@ -97,7 +97,7 @@ namespace Boutique
         private static async Task CreateAdminUser(UserManager<IdentityUser> userManager)
         {
             string adminEmail = ShopConstants.AdminEmail;
-            string adminPassword = "YourStrongPassword123!";
+            string adminPassword = ShopConstants.AdminPassword;
 
             var adminUser = await userManager.FindByEmailAsync(adminEmail);
             if (adminUser == null)
