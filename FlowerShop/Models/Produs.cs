@@ -1,4 +1,4 @@
-﻿using System.ComponentModel.DataAnnotations.Schema;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.ComponentModel.DataAnnotations;
 
 namespace Boutique.Models
@@ -6,7 +6,7 @@ namespace Boutique.Models
     public class Produs
     {
         [Key]
-        public int Id { get; set; }
+        public int Id { get; set; } = -1;
         [Required]
         [Display(Name = "Nume")]
         public string Name { get; set; }
