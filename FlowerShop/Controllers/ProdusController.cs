@@ -1,4 +1,4 @@
-﻿using Boutique.Models.ViewModels;
+using Boutique.Models.ViewModels;
 using Boutique.Models;
 using Boutique.Utility;
 using Microsoft.AspNetCore.Authorization;
@@ -70,7 +70,7 @@ namespace Boutique.Controllers
                 var files = HttpContext.Request.Form.Files;
                 string webRootPath = webHostEnvironment.WebRootPath;
 
-                if (productViewModel.Produs.Id == 0)
+                if (productViewModel.Produs.Id == -1)
                 {
                     string upload = webRootPath + ShopConstants.ImagePath;
                     string fileName = Guid.NewGuid().ToString();
