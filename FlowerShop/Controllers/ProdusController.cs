@@ -72,6 +72,7 @@ namespace Boutique.Controllers
 
                 if (productViewModel.Produs.Id == -1)
                 {
+                    productViewModel.Produs.Id = 0;
                     string upload = webRootPath + ShopConstants.ImagePath;
                     string fileName = Guid.NewGuid().ToString();
                     string extention = Path.GetExtension(files[0].FileName);
