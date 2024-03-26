@@ -53,6 +53,11 @@
 @section Scripts {
     <script>
         $(document).ready(() => {
+            function gettoken() {
+                var token = '@Html.AntiForgeryToken()';
+                token = $(token).val();
+                return token;
+            }
             $(".delete-button").click(async (e) => {
                 console.log(this);
                 const id = $(e.currentTarget).data("id");
@@ -72,6 +77,10 @@
                         url: '@Url.Action("Sterge", "Categorie")' + "/" + id,
                         type: 'POST',
                         dataType: 'json',
+                        data: {
+                            __RequestVerificationToken: gettoken(),
+                            id
+                        }
                     });
                     console.log(response.status);
                     if (response.status === 200) {
