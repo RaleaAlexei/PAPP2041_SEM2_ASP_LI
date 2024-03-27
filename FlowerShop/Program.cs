@@ -27,7 +27,17 @@ namespace Boutique
             builder.Services.AddDbContext<ApplicationDbContext>(options =>
             {
                 options.UseSqlite("Data Source=Flowers.db");
-                });
+            });
+            builder.Services.AddCors(options =>
+            {
+                options.AddPolicy("AllowAll",
+                    builder =>
+                    {
+                        builder.AllowAnyOrigin()
+                               .AllowAnyMethod()
+                               .AllowAnyHeader();
+                    });
+            });
             builder.Services.AddIdentity<IdentityUser, IdentityRole>()
                         .AddDefaultTokenProviders().AddDefaultUI()
                         .AddEntityFrameworkStores<ApplicationDbContext>();
@@ -42,6 +52,7 @@ namespace Boutique
             });
             // Build the app
             var app = builder.Build();
+            app.UseCors("AllowAll");
             using (var scope = app.Services.CreateScope())
             {
                 var services = scope.ServiceProvider;

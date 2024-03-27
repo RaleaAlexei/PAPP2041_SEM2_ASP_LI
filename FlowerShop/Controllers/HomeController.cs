@@ -41,13 +41,11 @@ namespace Boutique.Controllers
                 Produs = _db.Produs.Include(u => u.Categorie).Where(u => u.Id == id).FirstOrDefault(),
                 ExistaInCos = false
             };
-            foreach (var item in shopingCartList)
-            {
-                if (item.ProductId == id)
-                {
-                    detailsVM.ExistaInCos = true;
-                }
-            }
+            detailsVM.OtherProductsInCategory = _db.Produs
+                .Where(p => p.CategorieId == detailsVM.Produs.CategorieId && p.Id != detailsVM.Produs.Id)
+                .Take(3)
+                .ToList();
+            detailsVM.ExistaInCos = shopingCartList.Exists((item) => item.ProductId == id);
             return View(detailsVM);
         }
         [HttpPost, ActionName("Detalii")]

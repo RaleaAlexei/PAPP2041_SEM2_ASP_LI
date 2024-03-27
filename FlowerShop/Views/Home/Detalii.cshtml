@@ -2,6 +2,7 @@
 @{
     ViewData["Title"] = Model.Produs.Name;
 }
+
 <div class="container-fluid bg-light pt-4">
     <form method="post">
         <input asp-for="@Model.Produs.Id" hidden />
@@ -37,4 +38,24 @@
             </div>
         </div>
     </form>
+
+    <!-- Section for other products from the same category -->
+    <div class="row mt-4">
+        <div class="col-md-12">
+            <h2>Produse similare</h2>
+        </div>
+        @foreach (var product in Model.OtherProductsInCategory)
+        {
+            <div class="col-md-4 mb-4">
+                <div class="card">
+                    <img src="@ShopConstants.ImagePath@product.Image" class="card-img-top" alt="@product.Name">
+                    <div class="card-body">
+                        <h5 class="card-title">@product.Name</h5>
+                        <p class="card-text">@product.Price Lei</p>
+                        <a href="@Url.Action("Detalii", "Home", new { id = product.Id })" class="btn btn-primary">Vezi detalii</a>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
 </div>
