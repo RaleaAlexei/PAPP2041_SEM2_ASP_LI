@@ -62,7 +62,6 @@ namespace Boutique.Controllers
 
         //post-upsert
         [HttpPost]
-        [ValidateAntiForgeryToken]
         public IActionResult Upsert(ProdusViewModel productViewModel)
         {
             if (ModelState.IsValid)
@@ -124,8 +123,7 @@ namespace Boutique.Controllers
         }
         //post-delete
         [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Sterge(int? id)
+        public async Task<ActionResult> Sterge(int? id)
         {
             Produs? obj = _db.Produs.Find(id);
             if (obj == null)
@@ -142,7 +140,7 @@ namespace Boutique.Controllers
             }
 
             _db.Produs.Remove(obj);
-            _db.SaveChanges();
+            await _db.SaveChangesAsync();
             return Json(new { status = 200 });
         }
     }
