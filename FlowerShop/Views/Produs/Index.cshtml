@@ -1,4 +1,4 @@
-﻿@model IEnumerable<Boutique.Models.Produs>
+@model IEnumerable<Boutique.Models.Produs>
 @{
     ViewData["Title"] = "Produse";
 }
@@ -54,6 +54,11 @@
 </div>
 @section Scripts {
     <script>
+        function gettoken() {
+            var token = '@Html.AntiForgeryToken()';
+            token = $(token).val();
+            return token;
+        }
         $(document).ready(() => {
             $(".delete-button").click(async (e) => {
                 console.log(this);
@@ -71,9 +76,13 @@
                 });
                 if (result.isConfirmed) {
                     const response = await $.ajax({
-                        url: '@Url.Action("Sterge", "Produs")' + "/" + id,
+                        url: '@Url.Action("Sterge", "Produs")',
                         type: 'POST',
                         dataType: 'json',
+                        data: {
+                            __RequestVerificationToken: gettoken(),
+                            id
+                        }
                     });
                     console.log(response.status);
                     if (response.status === 200) {

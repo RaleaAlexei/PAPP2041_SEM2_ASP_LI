@@ -1,4 +1,4 @@
-﻿namespace Boutique
+namespace Boutique
 {
     public class ShopConstants
     {
@@ -8,5 +8,6 @@
         public const string Admin = "Admin";
         public const string Customer = "Customer";
         public const string AdminEmail = "admin@papp2041.com";
+        public const string AdminPassword = "YourStrongPassword123!";
     }
 }
